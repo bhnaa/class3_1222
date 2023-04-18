@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itwillbs.spring_mvc_board_bhn.mapper.MemberMapper">
+
+
+	<!-- 회원가입 INSERT 작업 -->
+	<insert id="insertMember">
+	
+		INSERT
+	 		INTO member
+ 			VALUES(
+ 				null 			-- idx는 자동 증가이므로 null 전달
+ 			   ,#{name}
+ 			   ,#{id}
+ 			   ,#{passwd}
+<!--  			   ,#{email}		-->
+			   ,CONCAT(#{email1}, '@', #{email2})		-- 이메일 결합은 MySQL의 concat 함수 사용 
+ 			   ,#{gender}
+ 			   ,now()
+ 			   ,'N'				-- 인증상태(auth_status)는 'N'
+ 			)
+			
+	</insert>
+	
+	
+	
+	<!-- 로그인 SELECT(passwd조회) 작업 -->
+	<select id="selectPasswd" resultType="string">
+		
+		SELECT passwd
+			FROM member
+			WHERE id = #{id}
+	
+	</select>
+	
+	
+	
+	<!-- 회원정보 조회하는 SELECT 작업 -->
+	<select id="selectMemberInfo" resultType="com.itwillbs.spring_mvc_board_bhn.vo.MemberVO">
+		SELECT *
+			FROM member
+			WHERE id = #{id}
+	</select>
+
+
+	
+	<!-- 회원정보를 수정하는 UPDATE 작업 -->
+	<update id="updateMemberInfo">
+		UPDATE member
+			SET
+				name = #{member.name}
+				,email = CONCAT(#{member.email1}, '@', #{member.email2})
+				,gender = #{member.gender}
+				<if test="newPasswd neq ''"> <!-- 마이바티스에서는 ne이 아니라 neq임 (newPasswd가 널스트링''이 아닐경우)-->
+					,passwd = #{newPasswd}
+				</if>
+			WHERE id = #{member.id} 
+	</update>
+
+
+
+
+	<!-- 회원탈퇴하는 DELETE 작업 -->
+	<delete id="deleteMember">
+		DELETE
+			FROM member
+			WHERE id = #{id}
+	
+	</delete>
+
+
+
+
+
+
+
+</mapper>
