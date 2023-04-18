@@ -26,8 +26,7 @@
 		<h3><a href="BoardList.bo">자유게시판 글목록</a></h3>
 		
 		<hr>
-		<h3> test 가 수정</h3>
-		
+		<h3>spring이 수정</h3>
 	</article>
 </body>
 </html>
