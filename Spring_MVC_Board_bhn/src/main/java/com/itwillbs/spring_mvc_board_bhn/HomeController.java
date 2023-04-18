@@ -32,6 +32,8 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
+		// bhnee 브랜치에서 추가한 내용
+		
 		return "index";
 	}
 	
