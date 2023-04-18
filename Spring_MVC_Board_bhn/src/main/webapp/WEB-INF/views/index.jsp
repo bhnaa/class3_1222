@@ -17,6 +17,8 @@
 		<jsp:include page="inc/top.jsp"></jsp:include>
 	</header>
 	<article id="main">
+		<h3>test가 추가함</h3>
+		
 		<h1>MVC 게시판 프로젝트</h1>
 		<h3><a href="BoardWriteForm.bo">글쓰기</a></h3>
 		<h3><a href="BoardList.bo">글목록</a></h3>
